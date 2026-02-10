@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <div class="hero-top">
+                <span class="hero-brand">FFCS MASTER</span>
+                <a class="hero-link" href="#">CONTACT</a>
+            </div>
+            <div class="hero-content">
+                <h1>Generate your own<br>timetables.</h1>
+            </div>
+            <div class="hero-features">
+                <span>Clash Detection</span>
+                <span>Auto-Generate</span>
+                <span>Saved Schedules</span>
+                <span>Dark Mode</span>
+                <span>Embedded Labs</span>
+            </div>
+        </section>
+        
+        <div class="timetable-section">
+            <div class="controls top-controls">
+            <button id="resetSelections" type="button">Reset</button>
+            <button id="historyButton" type="button" class="history-btn">
+                <span class="history-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="M12 7v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </span>
+                View History
+            </button>
+        </div>
+        <table class="timetable">
+            <tr>
+                <th class="day">THEORY HOURS</th>
+                <th class="slot">8:00 AM<br>to<br>8:50 AM</th>
+                <th class="slot">9:00 AM<br>to<br>9:50 AM</th>
+                <th class="slot">10:00 AM<br>to<br>10:50 AM</th>
+                <th class="slot">11:00 AM<br>to<br>11:50 AM</th>
+                <th class="slot">12:00 PM<br>to<br>12:50 PM</th>
+                <th class="break"></th>
+                <th class="slot">2:00 PM<br>to<br>2:50 PM</th>
+                <th class="slot">3:00 PM<br>to<br>3:50 PM</th>
+                <th class="slot">4:00 PM<br>to<br>4:50 PM</th>
+                <th class="slot">5:00 PM<br>to<br>5:50 PM</th>
+                <th class="slot">6:00 PM<br>to<br>6:50 PM</th>
+            </tr>
+            <tr>
+                <th class="day">LAB HOURS</th>
+                <th class="slot" colspan="2">8:00 AM<br>to<br>9:40 AM</th>
+                <th class="slot" colspan="2">9:51 AM<br>to<br>11:30 AM</th>
+                <th class="slot">11:40 AM<br>to<br>1:20 PM</th>
+                <th class="break"></th>
+                <th class="slot" colspan="2">2:00 PM<br>to<br>3:40 PM</th>
+                <th class="slot" colspan="2">3:51 PM<br>to<br>5:30 PM</th>
+                <th class="slot">5:40 PM<br>to<br>7:20 PM</th>
+            </tr>
+            <tr>
+                <th class="day" rowspan="2">Mon</th>
+                <td class="slot theory-slot">A1</td>
+                <td class="slot theory-slot">F1</td>
+                <td class="slot theory-slot">D1</td>
+                <td class="slot theory-slot">TB1</td>
+                <td class="slot theory-slot">TG1</td>
+                <td class="break"></td>
+                <td class="slot theory-slot">A2</td>
+                <td class="slot theory-slot">F2</td>
+                <td class="slot theory-slot">D2</td>
+                <td class="slot theory-slot">TB2</td>
+                <td class="slot theory-slot">TG2</td>
+            </tr>
+            <tr>
+                <td class="slot lab-slot" colspan="2">L1+L2</td>
+                <td class="slot lab-slot" colspan="2">L3+L4</td>
+                <td class="slot lab-slot">L5+L6</td>
+                <td class="break"></td>
+                <td class="slot lab-slot" colspan="2">L31+L32</td>
+                <td class="slot lab-slot" colspan="2">L33+L34</td>
+                <td class="slot lab-slot">L35+L36</td>
+            </tr>
+            <tr>
+                <th class="day" rowspan="2">Tue</th>
+                <td class="slot theory-slot">B1</td>
+                <td class="slot theory-slot">G1</td>
+                <td class="slot theory-slot">E1</td>
+                <td class="slot theory-slot">TC1</td>
+                <td class="slot theory-slot">TAA1</td>
+                <td class="break"></td>
+                <td class="slot theory-slot">B2</td>
+                <td class="slot theory-slot">G2</td>
+                <td class="slot theory-slot">E2</td>
+                <td class="slot theory-slot">TC2</td>
+                <td class="slot theory-slot">TAA2</td>
+            </tr>
+            <tr>
+                <td class="slot lab-slot" colspan="2">L7+L8</td>
+                <td class="slot lab-slot" colspan="2">L9+L10</td>
+                <td class="slot lab-slot">L11+L12</td>
+                <td class="break"></td>
+                <td class="slot lab-slot" colspan="2">L37+L38</td>
+                <td class="slot lab-slot" colspan="2">L39+L40</td>
+                <td class="slot lab-slot">L41+L42</td>
+            </tr>
+            <tr>
+                <th class="day" rowspan="2">Wed</th>
+                <td class="slot theory-slot">C1</td>
+                <td class="slot theory-slot">A1</td>
+                <td class="slot theory-slot">F1</td>
+                <td class="slot theory-slot">V1</td>
+                <td class="slot theory-slot">V2</td>
+                <td class="break"></td>
+                <td class="slot theory-slot">C2</td>
+                <td class="slot theory-slot">A2</td>
+                <td class="slot theory-slot">F2</td>
+                <td class="slot theory-slot">TD2</td>
+                <td class="slot theory-slot">TBB2</td>
+            </tr>
+            <tr>
+                <td class="slot lab-slot" colspan="2">L13+L14</td>
+                <td class="slot lab-slot" colspan="2">L15+L16</td>
+                <td class="slot lab-slot">L17+L18</td>
+                <td class="break"></td>
+                <td class="slot lab-slot" colspan="2">L43+L44</td>
+                <td class="slot lab-slot" colspan="2">L45+L46</td>
+                <td class="slot lab-slot">L47+L48</td>
+            </tr>
+            <tr>
+                <th class="day" rowspan="2">Thu</th>
+                <td class="slot theory-slot">D1</td>
+                <td class="slot theory-slot">B1</td>
+                <td class="slot theory-slot">G1</td>
+                <td class="slot theory-slot">TE1</td>
+                <td class="slot theory-slot">TCC1</td>
+                <td class="break"></td>
+                <td class="slot theory-slot">D2</td>
+                <td class="slot theory-slot">B2</td>
+                <td class="slot theory-slot">G2</td>
+                <td class="slot theory-slot">TE2</td>
+                <td class="slot theory-slot">TCC2</td>
+            </tr>
+            <tr>
+                <td class="slot lab-slot" colspan="2">L19+L20</td>
+                <td class="slot lab-slot" colspan="2">L21+L22</td>
+                <td class="slot lab-slot">L23+L24</td>
+                <td class="break"></td>
+                <td class="slot lab-slot" colspan="2">L49+L50</td>
+                <td class="slot lab-slot" colspan="2">L51+L52</td>
+                <td class="slot lab-slot">L53+L54</td>
+            </tr>
+            <tr>
+                <th class="day" rowspan="2">Fri</th>
+                <td class="slot theory-slot">E1</td>
+                <td class="slot theory-slot">C1</td>
+                <td class="slot theory-slot">TA1</td>
+                <td class="slot theory-slot">TF1</td>
+                <td class="slot theory-slot">TD1</td>
+                <td class="break"></td>
+                <td class="slot theory-slot">E2</td>
+                <td class="slot theory-slot">C2</td>
+                <td class="slot theory-slot">TA2</td>
+                <td class="slot theory-slot">TF2</td>
+                <td class="slot theory-slot">TDD2</td>
+            </tr>
+            <tr>
+                <td class="slot lab-slot" colspan="2">L25+L26</td>
+                <td class="slot lab-slot" colspan="2">L27+L28</td>
+                <td class="slot lab-slot">L29+L30</td>
+                <td class="break"></td>
+                <td class="slot lab-slot" colspan="2">L55+L56</td>
+                <td class="slot lab-slot" colspan="2">L57+L58</td>
+                <td class="slot lab-slot">L59+L60</td>
+            </tr>
+        </table>
+        </div>
+        <div class="controls">
+            <button id="confirmSelections" type="button">Confirm</button>
+        </div>
+        <div id="slotChoiceMenu" class="slot-choice-menu hidden" aria-hidden="true">
+            <p class="slot-choice-title">Choose A1 combination</p>
+            <div id="slotChoiceOptions" class="slot-choice-options"></div>
+            <button type="button" id="slotChoiceCancel" class="slot-choice-cancel">Cancel</button>
+        </div>
+        <section class="course-layout">
+            <div class="course-panel">
+                <h2 class="section-title">Course Configuration</h2>
+                <div class="subject-row">
+                    <label class="field">
+                        <span>Select Subject Domain</span>
+                        <select id="subjectDomain">
+                            <option value="">Select domain</option>
+                            <option value="CSE">SCOPE</option>
+                            <!-- <option value="ECE">ECE - Electronics</option>
+                            <option value="MATH">MATH - Mathematics</option>
+                            <option value="HUM">HUM - Humanities</option> -->
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Subject Name</span>
+                        <select id="subjectName">
+                            <option value="">Select subject</option>
+                            <option value="Probability">Probability</option>
+                            <option value="Computer Architecture">Computer Architecture</option>
+                        <option value="MPMC">MPMC</option>
+                        <option value="DAA">DAA</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Subject Type</span>
+                        <select id="subjectType">
+                            <option value="">Select type</option>
+                            <option value="theory">Theory Only</option>
+                            <option value="theory_lab">Theory + Lab</option>
+                            <option value="integrated">Embedded Theory + Lab</option>
+                        </select>
+                    </label>
+                    <div class="field">
+                        <span>Faculty (Theory)</span>
+                        <div class="faculty-select">
+                            <label class="select-all">
+                                <input type="checkbox" id="theorySelectAll">
+                                Select all
+                            </label>
+                            <div id="facultyTheoryList" class="faculty-list"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <span>Faculty (Lab)</span>
+                        <div class="faculty-select">
+                            <label class="select-all">
+                                <input type="checkbox" id="labSelectAll">
+                                Select all
+                            </label>
+                            <div id="facultyLabList" class="faculty-list"></div>
+                        </div>
+                        <span id="labFacultyError" class="field-error hidden">
+                            Theory only subjects cannot have a lab faculty.
+                        </span>
+                    </div>
+                </div>
+                <div class="controls subject-controls">
+                    <button id="saveSubject" type="button">Add to Selection</button>
+                </div>
+            </div>
+            <div class="course-panel">
+                <div class="saved-header">
+                    <h2 class="section-title">Selected Courses</h2>
+                    <button id="resetSubjects" type="button">Reset Subjects</button>
+                </div>
+                <div id="savedSubjects" class="saved-list"></div>
+            </div>
+        </section>
+        <div class="controls generate-controls">
+            <button id="generateOutput" type="button">Generate</button>
+        </div>
+        <section class="saved-section">
+            <h2 class="section-title">Generated Options</h2>
+            <div id="generatedCombos" class="generated-list">
+                <div class="generated-card">Click Generate to see timetable options.</div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
