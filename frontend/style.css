@@ -1,0 +1,609 @@
+:root {
+    --border: #e0e0e0;
+    --page-bg: #ffffff;
+    --day-bg: #ffffff;
+    --group-bg: #ffffff;
+    --theory-bg: #ffffff;
+    --lab-bg: #ffffff;
+    --break-bg: #ffffff;
+    --text: #222222;
+    --selected: #f1aa03;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    background: var(--page-bg);
+}
+
+.page {
+    padding: 0 0px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    background: #0b0b0b;
+}
+
+.hero {
+    width: 100%;
+    max-width: 100%;
+    background: #0b0b0b;
+    color: #f6f6f6;
+    border: 2px solid #141414;
+    padding: 42px 60px 28px;
+    display: grid;
+    gap: 24px;
+    text-align: center;
+    min-height: 80vh;
+    align-content: space-between;
+}
+
+.hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f6f6f6;
+}
+
+.hero-brand {
+    font-weight: 700;
+}
+
+.hero-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 3px;
+    font-weight: 600;
+}
+
+.hero-content h1 {
+    margin: 0;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: clamp(48px, 8vw, 104px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #d8d8d8;
+}
+
+.subject-section {
+    width: 100%;
+    max-width: 1400px;
+    background: #ffffff;
+    border: 2px solid var(--border);
+    padding: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.course-layout {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+    gap: 14px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.course-panel {
+    background: #ffffff;
+    border: 2px solid var(--border);
+    padding: 16px;
+}
+
+.course-panel .subject-row {
+    grid-template-columns: 1fr;
+}
+
+.course-panel .field select {
+    width: 100%;
+}
+
+.faculty-select {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 2px solid var(--border);
+    padding: 8px;
+    background: #ffffff;
+}
+
+.faculty-list {
+    max-height: 140px;
+    overflow-y: auto;
+    border-top: 1px solid #cccccc;
+    padding-top: 6px;
+    display: grid;
+    gap: 6px;
+}
+
+.faculty-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.select-all {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.faculty-select.disabled {
+    opacity: 0.6;
+}
+
+.course-panel .controls {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.saved-list .saved-card-content {
+    grid-template-columns: 140px 1fr;
+}
+
+.section-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+}
+
+.subject-row,
+.faculty-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.field select,
+.field textarea {
+    border: 2px solid var(--border);
+    padding: 8px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 14px;
+}
+
+.field textarea:disabled {
+    background: #efefef;
+    color: #666666;
+}
+
+.field-error {
+    font-size: 12px;
+    color: #b00020;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.field select.error {
+    border-color: #b00020;
+}
+
+.hidden {
+    display: none;
+}
+
+.controls {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-controls {
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+.top-controls button, .controls button {
+    background: transparent;
+    color: #f6f6f6;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.subject-controls {
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+.top-controls button:hover {
+    background: #f6f6f6;
+    color: #000;
+}
+#resetSelections, #historyButton, #confirmSelections {
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid #f1aa03; /* Neon border to match theme */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.history-btn:hover {
+    background: #efefef;
+}
+
+.history-icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    color: #333333;
+}
+
+.history-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+#resetSelections:hover,
+#confirmSelections:hover {
+    background: #efefef;
+}
+
+#saveSubject {
+    background: #f1aa03; /* Cyber Amber */
+    color: #000000;      /* Black text for contrast */
+    border: none;
+    padding: 12px 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: auto;
+}
+
+#saveSubject:hover {
+    background: #ffffff;
+    box-shadow: 0 0 15px rgba(241, 170, 3, 0.4);
+}
+
+.saved-section {
+    width: 100%;
+    max-width: 1400px;
+    background: #ffffff;
+    border: 2px solid var(--border);
+    padding: 16px;
+}
+
+.saved-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.history-actions {
+    display: inline-flex;
+    gap: 8px;
+}
+
+#clearHistory,
+#backHome {
+    background: #ffffff;
+    border: 2px solid #333333;
+    padding: 8px 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#clearHistory:hover,
+#backHome:hover {
+    background: #efefef;
+}
+
+#resetSubjects {
+    background: #ffffff;
+    border: 2px solid #333333;
+    padding: 8px 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#resetSubjects:hover {
+    background: #efefef;
+}
+
+.saved-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.generate-controls {
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.generate-controls #generateOutput {
+    background: #ffffff; /* Pure white to stand out on dark background */
+    color: #000000;
+    border: none;
+    padding: 16px 32px;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.generate-controls #generateOutput:hover {
+    background: #f1aa03; /* Swaps to Amber on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+.slot-choice-menu {
+    position: absolute;
+    z-index: 50;
+    background: #ffffff;
+    border: 2px solid var(--border);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 210px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.slot-choice-menu.hidden {
+    display: none;
+}
+
+.slot-choice-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.slot-choice-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.slot-choice-btn,
+.slot-choice-cancel {
+    background: #ffffff;
+    border: 2px solid #333333;
+    padding: 7px 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+}
+
+.slot-choice-btn:hover,
+.slot-choice-cancel:hover {
+    background: #efefef;
+}
+
+.saved-card {
+    border: 2px solid var(--border);
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.saved-card-content {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 6px 12px;
+}
+
+.saved-card strong {
+    font-weight: 700;
+}
+
+.delete-subject-btn {
+    background: #ffffff;
+    border: 2px solid #333333;
+    padding: 6px 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.delete-subject-btn:hover {
+    background: #efefef;
+}
+
+.generated-list {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(280px, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.generated-card {
+    border: 2px solid var(--border);
+    padding: 10px 12px;
+    background: #ffffff;
+    min-width: 280px;
+}
+
+.generated-title {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.generated-line {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.generated-item {
+    border-top: 1px dashed var(--border);
+    padding-top: 8px;
+    margin-top: 8px;
+    display: grid;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.generated-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px;
+}
+
+.timetable-section {
+    background-color: #0b0b0b; 
+    padding: 60px 20px;
+    min-height: 100vh;
+}
+
+.timetable {
+
+    background: rgba(255, 255, 255, 0.03) !important; /* Very faint white tint */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    color: #ffffff; /* Forces text to be white */
+
+}
+.timetable td, .timetable th {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 15px;
+    background: transparent !important; /* Removes the "white block" look */
+    color: #ffffff !important;
+    text-align: center;
+}
+.timetable th.corner {
+    background: var(--group-bg);
+    min-width: 70px;
+}
+
+.timetable th.group {
+    background: #ffffff;
+    padding: 25px 10px; /* Extra height for the main headers */
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.timetable th.break-head {
+    background: var(--group-bg);
+    font-weight: 700;
+    min-width: 70px;
+}
+
+.timetable th.day {
+    background: var(--day-bg);
+    font-weight: 700;
+    min-width: 70px;
+}
+.timetable td.selected {
+    background: #f1aa03 !important; 
+    color: #000000 !important;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(181, 247, 58, 0.4);
+}
+.timetable td.break {
+    background: var(--break-bg);
+    min-width: 70px;
+}
+
+.timetable td.slot {
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+}
+
+.timetable td.theory-slot {
+    background: var(--theory-bg);
+}
+
+.timetable td.lab-slot {
+    background: var(--lab-bg);
+}
+
+.timetable td.slot.selected {
+    background: #f1aa03!important; 
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(181, 247, 58, 0.3);
+}
+
+.timetable td.slot.disabled {
+    background: #e0e0e0;
+    color: #6b6b6b;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 1100px) {
+    .page {
+        padding: 0 0 16px;
+    }
+
+    .hero {
+        padding: 24px 18px;
+        min-height: 70vh;
+    }
+
+    .hero-top {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .saved-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .saved-card {
+        flex-direction: column;
+    }
+
+    .subject-row,
+    .faculty-row {
+        grid-template-columns: 1fr;
+    }
+
+    .timetable th,
+    .timetable td {
+        padding: 8px 6px;
+        min-width: 60px;
+        font-size: 12px;
+    }
+}
