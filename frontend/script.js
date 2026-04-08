@@ -30,7 +30,6 @@ const slotChoiceCancel = document.getElementById("slotChoiceCancel");
 // Generate output controls.
 const generateButton = document.getElementById("generateOutput");
 const generatedCombosContainer = document.getElementById("generatedCombos");
-const historyButton = document.getElementById("historyButton");
 // ============================================================================
 // CONSTANTS + STATE
 // ============================================================================
@@ -281,27 +280,19 @@ if (subjectTypeSelect) {
 let facultyOptionsBySubject = {};
 
 const loadFacultyOptions = async () => {
-  const sources = ["facultyOptions.json", `${API_BASE}/facultyOptions.json`];
-  let lastError = null;
-
-  for (const source of sources) {
-    try {
-      const response = await fetch(source, { cache: "no-store" });
-      if (!response.ok) {
-        throw new Error(`Failed to load facultyOptions.json (${response.status})`);
-      }
-      const data = await response.json();
-      facultyOptionsBySubject = data && typeof data === "object" ? data : {};
-      updateFacultyOptions();
-      disableSelectedSubjectOptions();
-      return;
-    } catch (error) {
-      lastError = error;
+  try {
+    const response = await fetch(`${API_BASE}/faculty-options`, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
+    const data = await response.json();
+    facultyOptionsBySubject = (data && typeof data === "object") ? data : {};
+    console.log("[faculty] Loaded options for subjects:", Object.keys(facultyOptionsBySubject));
+  } catch (error) {
+    console.error("[faculty] Failed to load faculty options from /faculty-options:", error);
+    facultyOptionsBySubject = {};
   }
-
-  console.error("Failed to load faculty options:", lastError);
-  facultyOptionsBySubject = {};
+  // Rebuild checkboxes now that data is available
   updateFacultyOptions();
   disableSelectedSubjectOptions();
 };
@@ -333,6 +324,7 @@ const updateFacultyOptions = () => {
   if (!subjectNameSelect) return;
   const subject = subjectNameSelect.value;
   const options = facultyOptionsBySubject[subject] || { theory: [], lab: [] };
+  console.log(`[faculty] Updating lists for "${subject}": ${(options.theory||[]).length} theory, ${(options.lab||[]).length} lab`);
   buildFacultyCheckboxList(facultyTheoryList, options.theory || []);
   buildFacultyCheckboxList(facultyLabList, options.lab || []);
   if (theorySelectAll) theorySelectAll.checked = false;
@@ -840,9 +832,6 @@ if (generateButton) {
           throw new Error(data?.error || "Failed to generate options.");
         }
         renderGeneratedPayload(data);
-        if (data.history_error) {
-          console.warn("History not saved:", data.history_error);
-        }
       })
       .catch((error) => {
         renderGeneratedPayload({
@@ -852,11 +841,6 @@ if (generateButton) {
   });
 }
 
-if (historyButton) {
-  historyButton.addEventListener("click", () => {
-    window.open("history.html", "_blank");
-  });
-}
 
 // ============================================================================
 // INITIAL LOAD
