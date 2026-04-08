@@ -43,11 +43,4 @@ After both servers are running, open:
 http://localhost:5500/index.html
 
 # WE PRIORTISE slots>>>faculty
-## Environment Setup
 
-Create a `.env` file in the project root and add:
-
-BACKBOARD_API_KEY=your_api_key_here  
-BACKBOARD_ASSISTANT_ID=your_assistant_id_here
-
-Environment files are intentionally not committed for security reasons.
