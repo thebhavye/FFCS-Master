@@ -16,7 +16,10 @@
         <section class="hero">
             <nav class="hero-nav">
                 <span class="hero-brand">FFCS MASTER</span>
-                <a class="hero-link" href="#">CONTACT</a>
+                <div style="display:flex;gap:24px;align-items:center;">
+                    <a class="hero-link" href="history.html" target="_blank">HISTORY</a>
+                    <a class="hero-link" href="#">CONTACT</a>
+                </div>
             </nav>
             <div class="hero-content">
                 <h1>Generate your own<br>timetables.</h1>
@@ -293,9 +296,6 @@
         document.getElementById('scrollCta').addEventListener('click', () => {
             document.getElementById('timetableSection').scrollIntoView({ behavior: 'smooth' });
         });
-        // Bounce animation loop for arrow
-        const arrow = document.querySelector('.scroll-arrow');
-        // CSS handles it via animation
     </script>
 </body>
 </html>
