@@ -480,6 +480,54 @@ const scheduleConstraintsSync = () => {
 };
 
 
+// ============================================================================
+// HISTORY — save a successful generate result to localStorage
+// ============================================================================
+const HISTORY_KEY = "ffcs_history";
+const MAX_HISTORY_ENTRIES = 30;
+
+const saveToHistory = (data, constraints) => {
+  const combos = Array.isArray(data?.combos) ? data.combos : [];
+  if (!combos.length) return; // don't record failed/empty generates
+
+  const now = new Date();
+  const label =
+    now.toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" }) +
+    " · " +
+    now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+
+  const entry = {
+    id: Date.now(),
+    label,
+    timestamp: Date.now(),
+    constraints: constraints.slice(),
+    subjects: savedSubjects.map((s) => ({ name: s.name, typeLabel: s.typeLabel || s.type })),
+    comboCount: combos.length,
+    combos,
+  };
+
+  let history = [];
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    history = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(history)) history = [];
+  } catch {
+    history = [];
+  }
+
+  history.unshift(entry); // newest first
+  if (history.length > MAX_HISTORY_ENTRIES) {
+    history = history.slice(0, MAX_HISTORY_ENTRIES);
+  }
+
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    console.log(`[history] Saved entry "${label}" (${combos.length} combos)`);
+  } catch (e) {
+    console.error("[history] Failed to save:", e);
+  }
+};
+
 
 // ============================================================================
 // GENERATED COMBOS RENDERING
@@ -681,6 +729,7 @@ if (savedSubjectsContainer) {
 
     const indexValue = deleteButton.getAttribute("data-index");
     const index = indexValue ? Number(indexValue) : -1;
+
     if (index < 0 || index >= savedSubjects.length) return;
 
     const subjectName = savedSubjects[index].name;
@@ -832,6 +881,7 @@ if (generateButton) {
           throw new Error(data?.error || "Failed to generate options.");
         }
         renderGeneratedPayload(data);
+        saveToHistory(data, selected); // ← save successful result to history
       })
       .catch((error) => {
         renderGeneratedPayload({
