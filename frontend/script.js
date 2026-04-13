@@ -9,7 +9,7 @@ const selectableCells = Array.from(
 const resetButton = document.getElementById("resetSelections");
 const confirmButton = document.getElementById("confirmSelections");
 // Subject form inputs.
-const API_BASE = `http://${window.location.hostname}:5000`;
+const API_BASE = "https://ffcs-master.onrender.com";
 const subjectTypeSelect = document.getElementById("subjectType");
 const subjectDomainSelect = document.getElementById("subjectDomain");
 const subjectNameSelect = document.getElementById("subjectName");
