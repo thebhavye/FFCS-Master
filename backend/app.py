@@ -264,5 +264,12 @@ def parse_regex_output(output_text):
     return combos, message_lines
 
 
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+
+
+@app.route("/")
+def home():
+    return "FFCS Backend is running"

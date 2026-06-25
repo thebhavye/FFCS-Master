@@ -3,24 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timetable History</title>
+    <title>FFCS Master — History</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="history.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="page">
-        <section class="saved-section">
-            <div class="saved-header">
-                <h2 class="section-title">History</h2>
-                <div class="history-actions">
-                    <button id="clearHistory" type="button">Clear History</button>
-                    <button id="backHome" type="button">Back</button>
+    <div class="hist-page">
+
+        <!-- ═══ HEADER ═══ -->
+        <header class="hist-header">
+            <span class="hero-brand">FFCS MASTER</span>
+            <span class="hist-page-title">Session History</span>
+            <a href="index.html" class="hero-link">← Back to App</a>
+        </header>
+
+        <!-- ═══ BODY LAYOUT ═══ -->
+        <div class="hist-layout">
+
+            <!-- ── Sidebar ── -->
+            <aside class="hist-sidebar">
+                <div class="hist-sidebar-top">
+                    <p class="section-eyebrow" style="margin-bottom:0;">Sessions</p>
+                    <button id="clearAllBtn" class="hist-clear-btn">Clear All</button>
                 </div>
-            </div>
-            <div id="historyList" class="saved-list">
-                <div class="saved-card">Loading history...</div>
-            </div>
-        </section>
-    </main>
+                <div id="historyList" class="hist-list"></div>
+                <div class="hist-compare-bar hidden" id="compareBar">
+                    <span id="compareCount" class="hist-compare-count">0 selected</span>
+                    <button id="compareBtn" class="hist-compare-action" disabled>Compare 2</button>
+                    <button id="cancelCompareBtn" class="hist-compare-cancel">Cancel</button>
+                </div>
+            </aside>
+
+            <!-- ── Main Panel ── -->
+            <main class="hist-main" id="histMain">
+                <div class="hist-empty">
+                    <p class="hist-empty-title">No session selected</p>
+                    <p class="hist-empty-sub">Pick a session from the sidebar to view its generated timetable options, or select two to compare them side by side.</p>
+                </div>
+            </main>
+
+        </div>
+    </div>
+
     <script src="history.js"></script>
 </body>
 </html>

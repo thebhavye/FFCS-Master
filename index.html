@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFCS Master</title>
+
+    <!-- ✅ FIXED PATH -->
+   <link rel="stylesheet" href="/FFCS-Master/frontend/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="page">
+
+        <!-- HERO -->
+        <section class="hero">
+            <nav class="hero-nav">
+                <span class="hero-brand">FFCS MASTER</span>
+                <div style="display:flex;gap:24px;align-items:center;">
+                    
+                   
+<a href="/FFCS-Master/frontend/history.html">
+                    
+                    
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <h1>Generate your own<br>timetables.</h1>
+            </div>
+
+            <div class="hero-scroll" id="scrollCta">
+                <span class="scroll-label">SCROLL</span>
+                <div class="scroll-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <polyline points="19 12 12 19 5 12"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- (rest of your HTML SAME — no changes needed) -->
+
+    </main>
+
+    <!-- ✅ FIXED PATH -->
+ <script src="/FFCS-Master/frontend/script.js"></script>
+
+    <script>
+        document.getElementById('scrollCta').addEventListener('click', () => {
+            document.getElementById('timetableSection').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
